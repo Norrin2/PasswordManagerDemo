@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { PasswordCard } from '../../models/password-card';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-password-card-form',
@@ -11,8 +12,9 @@ export class PasswordCardFormComponent implements OnChanges {
   @Input() card: PasswordCard = {};
   @Output() submitForm: EventEmitter<PasswordCard> = new EventEmitter<PasswordCard>();
   passwordCardForm: FormGroup;
+  passwordVisible: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private clipboard: Clipboard) {
     this.passwordCardForm = this.formBuilder.group({
       name: ['', Validators.required],
       url: ['', Validators.required],
@@ -42,4 +44,16 @@ export class PasswordCardFormComponent implements OnChanges {
       this.passwordCardForm.reset();
     }
   }
+
+  toggleVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+  }
+
+  copyToClipboard() {
+    const passwordValue = this.passwordCardForm.get('password')?.value;
+
+    if (passwordValue)
+      this.clipboard.copy(passwordValue);
+  }
+
 }
