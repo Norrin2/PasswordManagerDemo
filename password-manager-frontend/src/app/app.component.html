@@ -1,0 +1,19 @@
+<section class="container">
+  <h1>Password cards</h1>
+  <div class="cards-container">
+    <div class="card" *ngFor="let card of passwordCards">
+      <app-password-card [card]="card"
+                         (editCardEmmiter)="editCard($event)"
+                         (deleteCardEmmiter)="deleteCard($event)"
+      ></app-password-card>
+    </div>
+  </div>
+
+  <button mat-flat-button color="primary" class="button-new" (click)="toggleFormVisibility()">
+    <mat-icon>add</mat-icon> Add New
+  </button>
+  <div *ngIf="showForm" class="form">
+    <app-password-card-form (submitForm)="onSubmitForm($event)" [card]="selectedCard"></app-password-card-form>
+  </div>
+</section>
+
