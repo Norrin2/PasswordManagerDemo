@@ -30,7 +30,7 @@ Alternatively, you can use the .NET CLI to run the project:
 
 ## Running the Tests
 
-To run the unit tests in the PioresFilmes.Test project, follow these steps:
+To run the unit tests in the Password Manager Test project, follow these steps:
 
 1. Open the solution in Visual Studio 2022 or later.
 2. Set the Test Explorer window as the active window.
