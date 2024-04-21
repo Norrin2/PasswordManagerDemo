@@ -70,7 +70,6 @@ export class AppComponent implements OnInit {
 
   }
 
-  // Método chamado quando o valor do mat-input muda
   search() {
     this.filterCards();
   }
