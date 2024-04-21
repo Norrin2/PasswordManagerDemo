@@ -13,3 +13,4 @@ This is a Password Manager app.
 - There is a search functionality in the front-end which filters the existing list. Considering the entire list is already there it is much easier/faster to just filter it trough front-end, however an API method was exposed for this as well.
   
 
+## Tools used - Visual Studio 2022 (back-end) - VS Code (front-end)
