@@ -42,18 +42,26 @@ namespace PasswordManager.Controllers
 
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Update(Guid id, [FromBody] PasswordCard body)
         {
             body.Id = id;
             _repository.Update(body);
+
+            if (body == null)
+                return NotFound();
+
             return Ok(body);
         }
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Delete(Guid id)
         {
-            _repository.Delete(id);
+            var deleted = _repository.Delete(id);
+            if (!deleted) return NotFound();
+
             return Ok();
         }
     }

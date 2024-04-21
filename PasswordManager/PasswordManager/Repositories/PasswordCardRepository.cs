@@ -8,9 +8,12 @@ namespace PasswordManager.Repositories
 
         public void Add(PasswordCard savedPassword) => _savedPasswords.Add(savedPassword);
 
-        public void Delete(Guid id)
+        public bool Delete(Guid id)
         {
+            if (!FindById(id)) return false;
+
             _savedPasswords = _savedPasswords.Where(s => s.Id != id).ToList();
+            return true;
         }
 
         public PasswordCard? Update(PasswordCard savedPassword)
@@ -34,5 +37,10 @@ namespace PasswordManager.Repositories
 
         public IEnumerable<PasswordCard> FindByName(string searchParam) => _savedPasswords.Where(s => s.Name.ToLower()
                                                                                            .Contains(searchParam.ToLower()));
+
+        private bool FindById(Guid id)
+        {
+            return _savedPasswords.Any(s => s.Id == id);
+        }
     }
 }
