@@ -47,10 +47,10 @@ Alternatively, you can use the .NET CLI to run the tests:
 
 To run the Password Manager front-end project, follow these steps:
 
-cd password-manager-frontend
-npm install
-ng serve
-access http://localhost:4200/
-
+1. cd password-manager-frontend
+2. npm install
+3. ng serve
+4. access http://localhost:4200/
+Note that Node.js v18.13 or higher is required
 
 ## Tools used - Visual Studio 2022 (back-end) - VS Code (front-end)
