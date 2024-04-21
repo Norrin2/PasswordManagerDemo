@@ -10,8 +10,10 @@ import { PasswordCard } from './models/password-card';
 export class AppComponent implements OnInit {
 
   public passwordCards: Array<PasswordCard> = [];
+  public filteredPasswordCards: Array<PasswordCard> = [];
   showForm: boolean = false;
   selectedCard: PasswordCard = {};
+  searchTerm: string = '';
 
   constructor(private passwordCardService: PasswordCardService) {}
 
@@ -24,6 +26,7 @@ export class AppComponent implements OnInit {
     this.passwordCardService.findAll()
         .subscribe( (cards) => {
           this.passwordCards = cards;
+          this.filterCards();
           this.showForm = false;
         });
   }
@@ -55,6 +58,21 @@ export class AppComponent implements OnInit {
       this.passwordCardService.create(passwordCard)
         .subscribe(() => this.updatePasswordCards());
     }
+  }
+
+  filterCards() {
+    if (this.searchTerm)
+    {
+      this.filteredPasswordCards = this.passwordCards.filter(card =>
+        card.name!.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    } else this.filteredPasswordCards = this.passwordCards;
+
+  }
+
+  // Método chamado quando o valor do mat-input muda
+  search() {
+    this.filterCards();
   }
 
 }

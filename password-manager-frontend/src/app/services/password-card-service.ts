@@ -15,7 +15,7 @@ export class PasswordCardService {
     return this.http.get<PasswordCard[]>(`${this.baseUrl}`);
   }
 
-  findById(name: string): Observable<PasswordCard[]> {
+  findByName(name: string): Observable<PasswordCard[]> {
     return this.http.get<PasswordCard[]>(`${this.baseUrl}/${name}`);
   }
 

@@ -1,7 +1,11 @@
 <section class="container">
   <h1>Password cards</h1>
+  <mat-form-field appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Search" [(ngModel)]="searchTerm" (input)="search()">
+  </mat-form-field>
   <div class="cards-container">
-    <div class="card" *ngFor="let card of passwordCards">
+    <div class="card" *ngFor="let card of filteredPasswordCards">
       <app-password-card [card]="card"
                          (editCardEmmiter)="editCard($event)"
                          (deleteCardEmmiter)="deleteCard($event)"
